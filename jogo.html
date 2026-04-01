@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">Gameflix</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body { background-color: #000; margin: 0; padding: 0; display: flex; justify-content: center; min-height: 100vh; }
+        #gamePageModal { display: flex !important; position: relative; width: 100%; justify-content: center; padding: 40px 0; }
+        .modal-content { margin-top: 0; box-shadow: 0 0 80px rgba(229, 9, 20, 0.6); width: 90%; max-width: 900px; }
+        .modal-close { display: none; } /* Remove o X de fechar */
+        
+        /* Ajuste para o carrossel aparecer corretamente */
+        .screenshot-container {
+            display: flex; gap: 15px; overflow-x: auto; padding: 10px 0;
+            scrollbar-width: thin;
+        }
+        .screenshot-container img {
+            width: 280px; height: 160px; border-radius: 12px; object-fit: cover;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="gamePageModal">
+        <div class="modal-content">
+            <div class="modal-hero">
+                <iframe id="gameVideo" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
+
+            <div class="modal-info">
+                <h2 id="modalTitle">Carregando...</h2>
+                <p id="modalDesc">Descrição...</p>
+                
+                <div class="modal-actions">
+                    <button class="btn-play">▶ JOGAR AGORA</button>
+                    <button class="btn-info">+ Minha Lista</button>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Capturas de Tela</h3>
+                    <div class="screenshot-container">
+                        <img src="https://via.placeholder.com/280x160?text=Imagem+1" alt="Screenshot 1">
+                        <img src="https://via.placeholder.com/280x160?text=Imagem+2" alt="Screenshot 2">
+                        <img src="https://via.placeholder.com/280x160?text=Imagem+3" alt="Screenshot 3">
+                    </div>
+                </div>
+
+                <div class="modal-section" style="background: linear-gradient(45deg, #1a1a1a, #000); padding: 25px; border-radius: 12px; border: 1px solid #e50914; margin: 20px 0;">
+                    <h3 style="color: #e50914; margin-top: 0;">🔥 OFERTAS EXCLUSIVAS</h3>
+                    <p>Assine o plano Premium e tenha acesso a este e mais 120 jogos!</p>
+                    <div style="display: flex; gap: 10px; margin-top: 15px;">
+                        <div style="background: #222; padding: 10px; border-radius: 8px; flex: 1; text-align: center;">
+                            <span style="display: block; font-size: 12px;">MENSAL</span>
+                            <strong style="color: #fff; font-size: 18px;">R$ 29,90</strong>
+                        </div>
+                        <div style="background: #e50914; padding: 10px; border-radius: 8px; flex: 1; text-align: center;">
+                            <span style="display: block; font-size: 12px;">ANUAL</span>
+                            <strong style="color: #fff; font-size: 18px;">R$ 199,90</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-section" style="background: #161616; padding: 20px; border-radius: 8px;">
+                    <h3>Informações e Dúvidas Frequentes</h3>
+                    <p>Ouça nossa explicação em áudio:</p>
+                    <audio controls style="width: 100%; margin-top: 15px;">
+                        <source src="seu-audio.mp3" type="audio/mpeg">
+                    </audio>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Requisitos do Sistema</h3>
+                    <p id="system-reqs">Processador: Core i5 / Ryzen 5<br>Memória: 8GB RAM<br>Placa de Vídeo: GTX 1050 Ti</p>
+                </div>
+
+                <div style="padding: 30px 0; text-align: center;">
+                    <a href="https://wa.me/5553981045078" class="btn-wpp-glow" style="text-decoration: none;">
+                        FALE COM O SUPORTE VIA WHATSAPP
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const title = params.get('title');
+        const video = params.get('video');
+        const desc = params.get('desc');
+
+        if (title) {
+            document.getElementById('modalTitle').innerText = title;
+            document.title = title + " - Gameflix";
+        }
+        if (desc) document.getElementById('modalDesc').innerText = desc;
+        if (video) {
+            document.getElementById('gameVideo').src = `https://www.youtube.com/embed/${video}?autoplay=1&rel=0`;
+        }
+    </script>
+</body>
+</html>
