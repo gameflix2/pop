@@ -55,7 +55,6 @@ function openModal(title, desc, videoSrc) {
     const encodedTitle = encodeURIComponent(title);
     const encodedDesc = encodeURIComponent(desc);
     
-    // Trata o vídeo para pegar só o ID do YouTube
     let youtubeId = videoSrc;
     if (videoSrc.includes("v=")) {
         youtubeId = videoSrc.split("v=")[1].split("&")[0];
@@ -63,8 +62,8 @@ function openModal(title, desc, videoSrc) {
         youtubeId = videoSrc.split("youtu.be/")[1].split("?")[0];
     }
 
-    // ABRE EM NOVA ABA
-    window.open(`jogo.html?title=${encodedTitle}&desc=${encodedDesc}&video=${youtubeId}`, '_blank');
+    // REDIRECIONA NA MESMA ABA
+    window.location.href = `jogo.html?title=${encodedTitle}&desc=${encodedDesc}&video=${youtubeId}`;
 }
 
 // Certifique-se de que não existe outro código no seu script.js chamando "modal.style.display = 'flex'"
